@@ -11,18 +11,25 @@
  * @return {ListNode}
  */
 var removeNthFromEnd = function(head, n) {
+    // add sentinel node at first..
     let sentinel=new ListNode();
     sentinel.next=head;
-    let length=0;
-    while(head!=null){
-        head=head.next;
-        length++;
+
+    // move my first pointer ahead by n
+    let first=sentinel;
+    for(let i=0;i<n;i++){
+        first=first.next;
     }
-    let prevPos=length-n;
-    let prev=sentinel;
-    for(let i=0;i<prevPos;i++){
-      prev=prev.next;
+
+    // move both the pointer until first reaches to last node
+    let second=sentinel;
+    while(first.next!=null){
+        second=second.next;
+        first=first.next;
+        
     }
-      prev.next=prev.next.next;
-    return sentinel.next
+
+    // just delete the node..
+    second.next=second.next.next;
+    return sentinel.next;
 };
