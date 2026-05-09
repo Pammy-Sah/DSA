@@ -10,24 +10,28 @@
  * @return {ListNode}
  */
 var swapPairs = function(head) {
-    if(!head || !head.next) return head;
 
-    let dummy=new ListNode();
-    dummy.next=head;
+    // Dummy node
+    let dummy = new ListNode(0);
+    dummy.next = head;
 
-    let p=dummy;
-    let c=head;
-    let n=head.next;
+    let prev = dummy;
 
-    while(c && n){
-        p.next=n;
-        c.next=n.next;
-        n.next=c;
-     
+    // Traverse in pairs
+    while (head !== null && head.next !== null) {
 
-        p=c;
-        c=p.next;
-        n=c && c.next;
+        let first = head;
+        let second = head.next;
+
+        // Swapping nodes
+        prev.next = second;
+        first.next = second.next;
+        second.next = first;
+
+        // Move pointers forward
+        prev = first;
+        head = first.next;
     }
+
     return dummy.next;
 };
