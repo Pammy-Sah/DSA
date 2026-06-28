@@ -10,10 +10,10 @@ var twoSum = function(arr, target) {
     while(i<j){
         let sum=arr[i]+arr[j];
         if(sum>target){
-            --j;
+            j--;
         }
         else if(sum<target){
-            ++i;
+            i++;
         }
         else{
             return [i+1,j+1];
